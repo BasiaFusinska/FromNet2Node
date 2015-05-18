@@ -1,13 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
+var restler = require('restler');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('social', { title: 'Status set' });
 });
 
 router.post('/', function (req, res) {
-  res.send('You sent the reqest: <br/>' + req.body.status);
+  var data = { data: { status: req.body.status } };
+  restler.post('http://localhost:3000/api/event/1', data)
+      .on('complete', function (data, resp) {
+        res.send('You sent the reqest: <br/>' + JSON.stringify(req.body));
+      });
 });
 
 module.exports = router;

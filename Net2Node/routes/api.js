@@ -10,13 +10,13 @@ var pool = mysql.createPool({
 });
 
 
-router.post('/event/:eventType', function(req, res, next){
+router.post('/event/:eventType', function(req, res){
     pool.getConnection(function(err, connection) { 
 	    if (err) {
 	      console.log('ERROR: Unable to get connection due to ' + err.message);
 	    } else {
 	      connection.query('INSERT INTO events (event_type, payload, created_at) values (?, ?,?)',
-	        [req.params.eventType, 'payload', new Date()], function(err, result) {
+	        [req.params.eventType, JSON.stringify(req.body), new Date()], function(err, result) {
 	        if (err) {
 	          res.status(500).send(err);
 	        } else {

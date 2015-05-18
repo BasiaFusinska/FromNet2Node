@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,5 +59,25 @@ app.use(function(err, req, res, next) {
   });
 });
 
+
+var router = express.Router();
+
+router.get('/api/event/:eventType', function(req, res) {
+//  pool.getConnection(function(err, connection) { 
+//    if (err) {
+//      console.log('ERROR: Unable to get connection due to ' + err.message);
+//    } else {
+//      connection.query('INSERT INTO stats (data_event, payload, submission_date) values (?, ?,?)',
+//        [req.params.eventType, 'aaa', new Date()], function(err, result) {
+//        if (err) {
+//          res.send(500, err);
+//        } else {
+//          res.send(200, 'Event is queued...');
+//        }
+//        connection.release();
+//      });
+//    }
+//  });
+});
 
 module.exports = app;

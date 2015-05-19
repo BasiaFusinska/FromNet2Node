@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function (req, res) {
   var data = { data: { status: req.body.status } };
-  restler.post('http://localhost:3030/api/event/1', data)
+  restler.post('http://localhost:3030/api/events/NETDeveloper?eventType=status', data)
       .on('complete', function (data, resp) {
         res.send('You sent the reqest: <br/>' + JSON.stringify(req.body));
       });

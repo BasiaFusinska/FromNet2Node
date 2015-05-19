@@ -9,14 +9,31 @@ var pool = mysql.createPool({
   database : 'event_collection'
 });
 
+router.get('/events/:username', function(req, res){
+  pool.getConnection(function(err, connection) { 
+	    if (err) {
+	      console.log('ERROR: Unable to get connection due to ' + err.message);
+	    } else {
+        connection.query('SELECT * form events where username = ?', [req.params.username], function(err, result){
+          if (err) {
+	          res.status(500).send(err);
+	        } else {
+            res.json(result);
+          }
+        });
+        connection.release();
+      }
+  });
+});
 
-router.post('/event/:eventType', function(req, res){
+router.post('/events/:username', function(req, res){
     pool.getConnection(function(err, connection) { 
 	    if (err) {
 	      console.log('ERROR: Unable to get connection due to ' + err.message);
 	    } else {
-	      connection.query('INSERT INTO events (event_type, payload, created_at) values (?, ?,?)',
-	        [req.params.eventType, JSON.stringify(req.body), new Date()], function(err, result) {
+        console.log('event type: ' + req.query.eventType);
+	      connection.query('INSERT INTO events (event_type, payload, created_at, username) values (?, ?, ?, ?)',
+	        [req.query.eventType, JSON.stringify(req.body), new Date(), req.params.username], function(err, result) {
 	        if (err) {
 	          res.status(500).send(err);
 	        } else {

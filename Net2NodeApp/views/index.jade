@@ -1,15 +1,24 @@
 extends layout
 
 block content
-	h1= title
-	
+
+	h2 Status set
 	div
 		form(action='/',method='post')
 			label(for="status") Status: 
 			input#status(name="status")
 			input(type="submit",value="Set status")
 
-	h2 Wall
+	h2 Check in
+	div
+		form(action='/',method='post')
+			label(for="status") Status: 
+			input#status(name="status")
+			label(for="place") Place: 
+			input#place(name="place")
+			input(type="submit",value="Check in")
+
+	h1 Events
 	div
 		each ev in events
 			div

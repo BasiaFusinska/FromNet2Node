@@ -5,7 +5,8 @@ var restler = require('restler');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Status set' });
+	var events = [{username: 'aaa', status: 'AAAAA'}, {username: 'bbb', status: 'BBBBB'}]
+	res.render('index', { title: 'Status set', events: events});
 });
 
 router.post('/', function (req, res) {

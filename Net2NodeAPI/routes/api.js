@@ -14,7 +14,7 @@ router.get('/events/:username', function(req, res){
 	    if (err) {
 	      console.log('ERROR: Unable to get connection due to ' + err.message);
 	    } else {
-        connection.query('SELECT * form events where username = ?', [req.params.username], function(err, result){
+        connection.query('SELECT * from events where username = ?', [req.params.username], function(err, result){
           if (err) {
 	          res.status(500).send(err);
 	        } else {

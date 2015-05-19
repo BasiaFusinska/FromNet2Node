@@ -5,6 +5,9 @@ var restler = require('restler');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	restler.get('http://localhost:3030/api/events/NETDeveloper').on('complete', function(data) {
+  		console.log(data);  		
+	});
 	var events = [{username: 'aaa', status: 'AAAAA'}, {username: 'bbb', status: 'BBBBB'}]
 	res.render('index', { title: 'Status set', events: events});
 });

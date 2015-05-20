@@ -9,18 +9,22 @@ router.get('/', function(req, res, next) {
 	var userOnly = req.query.userOnly || false;
 	if (userOnly){
 		event_finder_for_user(function(err, data){
-			res.render('index', { title: 'Status set', events: data});
+			res.render('index', { events: data});
 		});	
 	} else {
 		event_finder(function(err, data){
-			res.render('index', { title: 'Status set', events: data});
+			res.render('index', { events: data});
 		});	
 	}
 });
 
 router.post('/', function (req, res) {
-	var data = { data: req.body };
-	var eventType = req.query.eventType || 'status';
+	var body = req.body;
+	var eventType = body.eventType || 'status';
+	delete body.eventType;
+
+	var data = {data: body};
+
 	event_creator(eventType, data, function(err, data){
 		res.send('You sent the reqest: <br/>' + JSON.stringify(req.body));
 	});

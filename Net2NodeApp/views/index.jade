@@ -7,6 +7,7 @@ block content
 		form(action='/',method='post')
 			label(for="status") Status: 
 			input#status(name="status")
+			input(type="hidden" name="eventType" value="status")
 			input(type="submit",value="Set status")
 
 	h2 Check in
@@ -16,6 +17,7 @@ block content
 			input#status(name="status")
 			label(for="place") Place: 
 			input#place(name="place")
+			input(type="hidden" name="eventType" value="checkIn")
 			input(type="submit",value="Check in")
 
 	h1 Events

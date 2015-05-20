@@ -1,13 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var mysql      = require('mysql');
-var pool = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  password: 'root',
-  database : 'event_collection'
-});
+var pool = require('../lib/database/pool')
 
 router.get('/events', function(req, res){
   pool.getConnection(function(err, connection) { 

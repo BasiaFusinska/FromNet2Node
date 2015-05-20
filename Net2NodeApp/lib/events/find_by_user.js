@@ -5,6 +5,7 @@ var _ = require('underscore');
 var rewriteJson = function(data){
 	return _.map(data, function(event){
 		event.payload = JSON.parse(event.payload);
+		event.created_at = (new Date(event.created_at)).toLocaleDateString("en-GB");
 		return event;
 	});
 };

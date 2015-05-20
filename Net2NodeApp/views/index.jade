@@ -29,3 +29,10 @@ block content
 				= ev.username
 				p
 				= ev.payload.status
+				p
+				| At:
+				= ev.created_at
+				if ev.event_type == 'checkIn'
+					p 
+					| In:
+					= ev.payload.place 

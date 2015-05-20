@@ -9,6 +9,23 @@ var pool = mysql.createPool({
   database : 'event_collection'
 });
 
+router.get('/events', function(req, res){
+  pool.getConnection(function(err, connection) { 
+	    if (err) {
+	      console.log('ERROR: Unable to get connection due to ' + err.message);
+	    } else {
+        connection.query('SELECT * from events', function(err, result){
+          if (err) {
+	          res.status(500).send(err);
+	        } else {
+            res.json(result);
+          }
+        });
+        connection.release();
+      }
+  });
+});
+
 router.get('/events/:username', function(req, res){
   pool.getConnection(function(err, connection) { 
 	    if (err) {

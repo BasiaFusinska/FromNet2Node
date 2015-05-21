@@ -6,7 +6,7 @@ var event_finder_for_user = require('../lib/events/find_by_user');
 var event_creator = require('../lib/events/create');
 
 router.get('/', function(req, res, next) {
-	var userOnly = req.query.userOnly || false;
+	var userOnly = (req.query && req.query.userOnly) || false;
 	if (userOnly){
 		event_finder_for_user(function(err, data){
 			res.render('index', { events: data});

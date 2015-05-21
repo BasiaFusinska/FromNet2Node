@@ -7,10 +7,21 @@ module.exports = function (grunt) {
                 configFile: 'karma.conf.js',
                 singleRun: true
             }
-        } 
+        },
+        jasmine_node: {
+            options: {
+                forceExit: true,
+                match: '.',
+                matchall: false,
+                extensions: 'js',
+                specNameMatcher: '*'
+            },
+            all: ['.'],
+        }
 	});
 
 	grunt.loadNpmTasks('grunt-karma');
-    grunt.registerTask('default', ['karma']);
+    grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.registerTask('default', ['jasmine_node', 'karma']);
 
 };

@@ -10,11 +10,11 @@ router.get('/', function(req, res, next) {
 	if (userOnly){
 		event_finder_for_user(function(err, data){
 			res.render('index', { events: data});
-		});	
+		});
 	} else {
-		event_finder(function(err, data){
+		event_finder.all(function(err, data){
 			res.render('index', { events: data});
-		});	
+		});
 	}
 });
 

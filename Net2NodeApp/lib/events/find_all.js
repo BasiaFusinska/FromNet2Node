@@ -10,9 +10,9 @@ var rewriteJson = function(data){
 	});
 };
 
-module.exports = function(callback) {
+module.exports.all = function(callback) {
 	restler.get(config.events_api.events)
 	.on('complete', function(data) {
-  		callback(null, rewriteJson(data));	
+  		callback(null, rewriteJson(data));
 	});
 };

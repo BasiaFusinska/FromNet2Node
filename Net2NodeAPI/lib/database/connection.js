@@ -11,4 +11,4 @@ module.exports = function(query, params, callback){
         connection.release();
       }
   });
-}
+};

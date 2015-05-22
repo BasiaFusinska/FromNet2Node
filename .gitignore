@@ -2,3 +2,5 @@
 /Net2NodeAPI/node_modules/*
 /Net2NodeApp/typings/*
 /Net2NodeAPI/typings/*
+/Net2NodeApp/.settings/*
+/Net2NodeAPI/.settings/*

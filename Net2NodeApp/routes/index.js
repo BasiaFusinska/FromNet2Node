@@ -26,7 +26,7 @@ router.post('/', function (req, res) {
 	var data = {data: body};
 
 	event_creator(eventType, data, function(err, data){
-		res.send('You sent the reqest: <br/>' + JSON.stringify(req.body));
+		res.redirect('/');
 	});
 });
 

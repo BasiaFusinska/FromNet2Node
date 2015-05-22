@@ -17,11 +17,17 @@ module.exports = function (grunt) {
                 specNameMatcher: '*'
             },
             all: ['.'],
+        },
+        exec: {
+            nodemon: {
+                cmd: 'nodemon ./bin/www'
+            }
         }
 	});
 
 	grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.loadNpmTasks('grunt-exec');
     grunt.registerTask('default', ['jasmine_node', 'karma']);
-
+    grunt.registerTask('nodemon', ['exec:nodemon']);
 };
